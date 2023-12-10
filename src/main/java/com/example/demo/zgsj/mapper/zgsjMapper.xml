@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.zgsj.mapper.ZgsjMapper">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.example.demo.zgsj.entity.ZgsjEntity" id="zgsjMap">
+        <result property="id" column="id"/>
+        <result property="empName" column="emp_name"/>
+        <result property="sex" column="sex"/>
+        <result property="age" column="age"/>
+        <result property="deptName" column="dept_name"/>
+        <result property="empDegreeName" column="emp_degree_name"/>
+    </resultMap>
+
+    <select id="getuserNum" resultType="int">
+        select count(1) from zgsj where emp_name = #{params.username}
+    </select>
+
+    <select id="selectPageVo" resultType="com.example.demo.zgsj.entity.ZgsjEntity">
+        select * from zgsj
+        <where>
+            1=1
+            <if test="params.empName!=null and params.empName.trim!=''">
+                and emp_name like concat('%',#{params.empName},'%')
+            </if>
+            <if test="params.deptName!=null and params.deptName.trim!=''">
+                and dept_name = #{params.deptName}
+            </if>
+            <if test="params.empDegreeName!=null and params.empDegreeName.trim!=''">
+                and emp_degree_name = #{params.empDegreeName}
+            </if>
+        </where>
+    </select>
+
+    <select id="selectForExport" resultType="com.example.demo.zgsj.entity.ZgsjEntityDo">
+        select * from zgsj
+    </select>
+
+</mapper>

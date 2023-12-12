@@ -1,0 +1,4 @@
+swagger文档地址：http://localhost:8080/doc.html
+关于swagger2文档展示接口说明：
+由于之前没有使用过swagger，所以该项目开发流程为所有后端接口开发完成之后添加swagger2文档，由于所有的controller都是用的是@RequestMapping导致其无法分辨接口
+故而产生一个请求有多个swagger接口的问题，这是项目开发流程产生的问题，这个坑后面会注意，由于时间问题没有做后续修改。
